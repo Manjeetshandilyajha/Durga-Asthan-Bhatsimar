@@ -15,7 +15,12 @@ const getPhotoUrl = (photoPath, index) => {
   if (photoPath.includes('samiti1')) return samiti1Img;
   if (photoPath.includes('samiti2')) return samiti2Img;
   if (photoPath.includes('samiti3')) return samiti3Img;
-  return photoPath;
+  const backendOrigin = import.meta.env.VITE_API_URL
+    ? import.meta.env.VITE_API_URL.replace(/\/api\/?$/, '')
+    : (typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'))
+    ? ''
+    : 'https://durga-asthan-bhatsimar-server.onrender.com';
+  return photoPath.startsWith('/') ? `${backendOrigin}${photoPath}` : `${backendOrigin}/${photoPath}`;
 };
 
 const CommitteeCard = ({ member, index = 0, onSelectPhoto, compact = false }) => {

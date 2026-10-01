@@ -22,17 +22,21 @@ const Home = () => {
     const fetchData = async () => {
       try {
         const [eventRes, galleryRes, panditRes, committeeRes] = await Promise.all([
-          API.get('/events'),
-          API.get('/gallery'),
+          API.get('/events').catch(() => ({ data: [] })),
+          API.get('/gallery').catch(() => ({ data: [] })),
           API.get('/pandits').catch(() => ({ data: DEFAULT_PANDITS })),
           API.get('/committee').catch(() => ({ data: DEFAULT_COMMITTEE_MEMBERS })),
         ]);
-        setEvents(eventRes.data.slice(0, 3));
-        setGallery(galleryRes.data.slice(0, 4));
-        if (panditRes.data && panditRes.data.length > 0) {
+        if (Array.isArray(eventRes.data)) {
+          setEvents(eventRes.data.slice(0, 3));
+        }
+        if (Array.isArray(galleryRes.data)) {
+          setGallery(galleryRes.data.slice(0, 4));
+        }
+        if (Array.isArray(panditRes.data) && panditRes.data.length > 0) {
           setPandits(panditRes.data);
         }
-        if (committeeRes.data && committeeRes.data.length > 0) {
+        if (Array.isArray(committeeRes.data) && committeeRes.data.length > 0) {
           setCommittee(committeeRes.data);
         }
       } catch (error) {

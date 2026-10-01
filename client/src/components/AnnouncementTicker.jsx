@@ -9,15 +9,21 @@ const AnnouncementTicker = () => {
     const fetchAnnouncements = async () => {
       try {
         const res = await API.get('/announcements');
-        setAnnouncements(res.data);
+        if (Array.isArray(res.data)) {
+          setAnnouncements(res.data);
+        } else {
+          setAnnouncements([]);
+        }
       } catch (error) {
         console.error('Error fetching announcements:', error);
+        setAnnouncements([]);
       }
     };
     fetchAnnouncements();
   }, []);
 
-  if (!announcements || announcements.length === 0) return null;
+  const safeAnnouncements = Array.isArray(announcements) ? announcements : [];
+  if (safeAnnouncements.length === 0) return null;
 
   return (
     <div className="bg-[#6A0909] text-white border-y border-[#D4AF37] py-2.5 px-4 shadow-inner">
@@ -29,7 +35,7 @@ const AnnouncementTicker = () => {
 
         <div className="overflow-hidden relative flex-1">
           <div className="whitespace-nowrap animate-marquee flex items-center space-x-8 text-sm font-medium text-amber-100">
-            {announcements.map((item, index) => (
+            {safeAnnouncements.map((item, index) => (
               <span key={item._id || index} className="inline-flex items-center gap-2">
                 <ChevronRight className="w-4 h-4 text-[#FFD700]" />
                 <span className="font-bold text-[#FFD700]">{item.title}:</span>

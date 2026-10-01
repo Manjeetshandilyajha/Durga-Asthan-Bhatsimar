@@ -44,7 +44,7 @@ const PanditPage = () => {
     const fetchPandits = async () => {
       try {
         const res = await API.get('/pandits');
-        if (res.data && res.data.length > 0) {
+        if (Array.isArray(res.data) && res.data.length > 0) {
           setPandits(res.data);
         }
       } catch (err) {

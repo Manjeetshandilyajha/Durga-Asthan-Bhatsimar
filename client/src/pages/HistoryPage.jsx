@@ -11,9 +11,10 @@ const HistoryPage = () => {
     const fetchHistory = async () => {
       try {
         const res = await API.get('/history');
-        setTimelineItems(res.data);
+        setTimelineItems(Array.isArray(res.data) ? res.data : []);
       } catch (error) {
         console.error('Error fetching history timeline:', error);
+        setTimelineItems([]);
       } finally {
         setLoading(false);
       }

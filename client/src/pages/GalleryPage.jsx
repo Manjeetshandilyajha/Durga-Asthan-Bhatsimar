@@ -16,9 +16,10 @@ const GalleryPage = () => {
       try {
         const url = activeCategory === 'सभटा' ? '/gallery' : `/gallery?category=${encodeURIComponent(activeCategory)}`;
         const res = await API.get(url);
-        setImages(res.data);
+        setImages(Array.isArray(res.data) ? res.data : []);
       } catch (error) {
         console.error('Error fetching gallery:', error);
+        setImages([]);
       } finally {
         setLoading(false);
       }

@@ -14,9 +14,10 @@ const EventsPage = () => {
     const fetchEvents = async () => {
       try {
         const res = await API.get('/events');
-        setEvents(res.data);
+        setEvents(Array.isArray(res.data) ? res.data : []);
       } catch (error) {
         console.error('Error fetching events:', error);
+        setEvents([]);
       } finally {
         setLoading(false);
       }

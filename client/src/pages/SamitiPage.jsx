@@ -44,7 +44,7 @@ const SamitiPage = () => {
     const fetchMembers = async () => {
       try {
         const res = await API.get('/committee');
-        if (res.data && res.data.length > 0) {
+        if (Array.isArray(res.data) && res.data.length > 0) {
           setMembers(res.data);
         }
       } catch (err) {

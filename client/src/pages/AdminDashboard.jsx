@@ -82,15 +82,15 @@ const AdminDashboard = () => {
         API.get('/committee/admin/all').catch(() => API.get('/committee')),
       ]);
 
-      setHistoryItems(histRes.data);
-      setGalleryItems(galRes.data);
-      setEvents(evRes.data);
-      setAnnouncements(annRes.data);
-      setSubmissions(subRes.data);
-      setMessages(msgRes.data);
-      setSettings(setRes.data);
-      setPandits(panditRes.data);
-      setCommittee(committeeRes.data);
+      setHistoryItems(Array.isArray(histRes.data) ? histRes.data : []);
+      setGalleryItems(Array.isArray(galRes.data) ? galRes.data : []);
+      setEvents(Array.isArray(evRes.data) ? evRes.data : []);
+      setAnnouncements(Array.isArray(annRes.data) ? annRes.data : []);
+      setSubmissions(Array.isArray(subRes.data) ? subRes.data : []);
+      setMessages(Array.isArray(msgRes.data) ? msgRes.data : []);
+      setSettings(setRes.data && typeof setRes.data === 'object' ? setRes.data : {});
+      setPandits(Array.isArray(panditRes.data) ? panditRes.data : []);
+      setCommittee(Array.isArray(committeeRes.data) ? committeeRes.data : []);
     } catch (error) {
       console.error('Error fetching admin data:', error);
     }

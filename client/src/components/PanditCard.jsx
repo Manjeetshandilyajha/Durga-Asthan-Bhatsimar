@@ -17,7 +17,12 @@ const getPhotoUrl = (photoPath, index) => {
   if (photoPath.includes('pandit1')) return pandit1Img;
   if (photoPath.includes('pandit2')) return pandit2Img;
   if (photoPath.includes('pandit3')) return pandit3Img;
-  return photoPath;
+  const backendOrigin = import.meta.env.VITE_API_URL
+    ? import.meta.env.VITE_API_URL.replace(/\/api\/?$/, '')
+    : (typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'))
+    ? ''
+    : 'https://durga-asthan-bhatsimar-server.onrender.com';
+  return photoPath.startsWith('/') ? `${backendOrigin}${photoPath}` : `${backendOrigin}/${photoPath}`;
 };
 
 const PanditCard = ({ pandit, index = 0, onSelect, compact = false }) => {
