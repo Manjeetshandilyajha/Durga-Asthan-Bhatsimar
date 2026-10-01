@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-heading: 'Rozha One', 'Yatra One', 'Noto Serif Devanagari', serif;
+    --font-body: 'Noto Serif Devanagari', 'Poppins', sans-serif;
+  }
+
+  body {
+    font-family: var(--font-body);
+    background-color: #FAF5EF;
+    color: #2D1212;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, .font-heading {
+    font-family: var(--font-heading);
+  }
+}
+
+/* Custom Mithila / Temple Decorative Patterns & Glows */
+.bg-mithila-pattern {
+  background-color: #6A0909;
+  background-image: radial-gradient(#D4AF37 0.75px, transparent 0.75px), radial-gradient(#D4AF37 0.75px, #6A0909 0.75px);
+  background-size: 30px 30px;
+  background-position: 0 0, 15px 15px;
+}
+
+.gold-gradient-text {
+  background: linear-gradient(135deg, #FFD700 0%, #D4AF37 50%, #F59E0B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-gradient-bg {
+  background: linear-gradient(135deg, #D4AF37 0%, #F57C00 100%);
+}
+
+.gold-border-glow {
+  border: 2px solid #D4AF37;
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.35);
+}
+
+.temple-card-shadow {
+  box-shadow: 0 10px 30px -5px rgba(106, 9, 9, 0.12), 0 4px 10px -2px rgba(230, 81, 0, 0.08);
+}
+
+.temple-hero-overlay {
+  background: linear-gradient(180deg, rgba(26, 11, 11, 0.3) 0%, rgba(106, 9, 9, 0.7) 60%, rgba(26, 11, 11, 0.95) 100%);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #FAF5EF;
+}
+::-webkit-scrollbar-thumb {
+  background: #D9531E;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #6A0909;
+}
