@@ -469,7 +469,7 @@ const Home = () => {
                 दुर्गा स्थान, भटसिमर
               </h3>
               <p className="text-amber-100 text-sm font-serif">
-                ग्राम - भटसिमर, प्रखंड - रहिका/मधुबनी, जिला - मधुबनी, बिहार
+                ग्राम - भटसिमर, प्रखंड - राजनगर/मधुबनी, जिला - मधुबनी, बिहार
               </p>
               <a
                 href="https://maps.google.com/?q=Bhatsimar+Durga+Sthan"
